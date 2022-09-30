@@ -53,8 +53,8 @@ public class Taxi extends PublicTransportation{
     }
 
     // 운행 시작
-    public int busCondition(){
-        return 0;
+    public void busCondition(int speed){
+        currentSpeed += speed;
     }
 
     public void boardingPassengers(int passenger){
@@ -72,12 +72,13 @@ public class Taxi extends PublicTransportation{
         System.out.println("목적지까지의 거리 : " + distance);
         System.out.println("지불할 요금 : " + additionalChargePerDistance(distance));
         paymentOfChage(distance);
-        super.changeCondition(getNumber(), "택시", 0);
+        condition = 0;
+        super.changeCondition(getNumber(), "택시", condition);
     }
 
     // 속도 변경
-    public int changeSpeed(){
-        return 0;
+    public void changeSpeed(){
+        System.out.println("속도 변경");
     }
 
     // 거리당 요금 추가
@@ -86,9 +87,9 @@ public class Taxi extends PublicTransportation{
     }
 
     // 요금 결제
-    public int paymentOfChage(int distance){
+    public void paymentOfChage(int distance){
+        condition = 1;
         totalCharge += basicCharge + (distance - basicDistance) * distanceCharge;
-        return totalCharge;
     }
 
     public void changeAmountOfFuel(int fuel){
@@ -97,7 +98,8 @@ public class Taxi extends PublicTransportation{
         super.changeAmountOfFuel();
 
         if(getAmountOfFuel() < 10){
-            super.changeCondition(getNumber(), "택시", 2);
+            condition = 2;
+            super.changeCondition(getNumber(), "택시", condition);
         }
         System.out.println("누적 요금 : " + totalCharge);
     }

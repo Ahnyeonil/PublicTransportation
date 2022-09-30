@@ -18,6 +18,8 @@ public class Bus extends PublicTransportation{
     int charge = 1000;
     // 상태 (0 : 차고지 행, 1 : 운행)
     int condition = 0;
+    // 현재 속도
+    int currentSpeed = 0;
 
     public Bus(int number, int amountOfFuel, int speed, int maximumPassenger) {
         super(number, amountOfFuel, speed, maximumPassenger);
@@ -26,11 +28,6 @@ public class Bus extends PublicTransportation{
 
     public void confirmNumber(int num){
         super.confirmNumber(num, " 번 버스");
-    }
-
-    // 운행
-    public int startService(){
-        return 0;
     }
 
     // 버스 상태 변경
@@ -59,8 +56,8 @@ public class Bus extends PublicTransportation{
     }
 
     // 속도 변경
-    public int changeSpeed(){
-        return 0;
+    public void changeSpeed(){
+
     }
 
     public void changeAmountOfFuel(int fuel){

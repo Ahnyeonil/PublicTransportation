@@ -22,8 +22,8 @@ public class PublicTransportation {
     }
 
     // 속도 변경
-    public int changeSpeed(){
-        return 0;
+    public void changeSpeed(){
+
     }
 
     public void confirmNumber(int num, String kind){
@@ -34,22 +34,20 @@ public class PublicTransportation {
         if(kind.equals("버스")) {
             if (condition == 1) {
                 System.out.println("상태 : " + num + kind + " 운행중");
-            } else
+            } else {
                 System.out.println(num + kind + " 차고지 행");
+            }
         } else {
             if (condition == 0) {
                 System.out.println("상태 : " + num + kind + " 운행중");
-            } else if(condition == 1)
+            } else if(condition == 1) {
                 System.out.println(num + kind + " 일반");
-            else
+            }
+            else {
                 System.out.println("상태 : 운행불가");
+            }
         }
     }
-
-    // 승객 탑승
-/*    public void boardingPassengers(int passenger){
-        System.out.println("탑승 승객 수 : " + passenger);
-    }*/
 
     public void changeAmountOfFuel(){
         System.out.println("주유량 : " + amountOfFuel);
