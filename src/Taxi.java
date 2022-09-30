@@ -45,10 +45,10 @@ public class Taxi extends PublicTransportation{
         super.changeAmountOfFuel();
         if(condition == 0) {
             super.changeCondition(num, "택시", condition);
-            condition = 1;
         } else if(condition == 1){
             super.changeCondition(num, "택시", condition);
-            condition = 0;
+        } else {
+            super.changeCondition(num, "택시", condition);
         }
     }
 
@@ -63,17 +63,21 @@ public class Taxi extends PublicTransportation{
     }
     // 승객 탑승
     public void boardingPassengers(int passenger, String destination, int distance){
-        currentPassenger += passenger;
-        System.out.println("탑승 승객 수 : " + currentPassenger);
-        System.out.println("잔여 승객 수 : " + (getMaximumPassenger() - currentPassenger));
-        /*super.boardingPassengers(currentPassenger);*/
-        System.out.println("기본 요금 확인 : " + basicCharge);
-        System.out.println("목적지 : " + destination);
-        System.out.println("목적지까지의 거리 : " + distance);
-        System.out.println("지불할 요금 : " + additionalChargePerDistance(distance));
-        paymentOfChage(distance);
-        condition = 0;
-        super.changeCondition(getNumber(), "택시", condition);
+
+        if(condition != 1){
+            System.out.println("탑승 불가");
+        } else {
+            currentPassenger += passenger;
+            System.out.println("탑승 승객 수 : " + currentPassenger);
+            System.out.println("잔여 승객 수 : " + (getMaximumPassenger() - currentPassenger));
+            /*super.boardingPassengers(currentPassenger);*/
+            System.out.println("기본 요금 확인 : " + basicCharge);
+            System.out.println("목적지 : " + destination);
+            System.out.println("목적지까지의 거리 : " + distance);
+            System.out.println("지불할 요금 : " + additionalChargePerDistance(distance));
+            condition = 0;
+            super.changeCondition(getNumber(), "택시", condition);
+        }
     }
 
     // 속도 변경
@@ -87,7 +91,7 @@ public class Taxi extends PublicTransportation{
     }
 
     // 요금 결제
-    public void paymentOfChage(int distance){
+    public void paymentOfChange(int distance){
         condition = 1;
         totalCharge += basicCharge + (distance - basicDistance) * distanceCharge;
     }

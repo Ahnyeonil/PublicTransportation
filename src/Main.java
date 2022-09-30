@@ -21,8 +21,10 @@ public class Main {
 
         taxi1.boardingPassengers(2, "서울역", 2);
         taxi1.changeAmountOfFuel(-80);
+        taxi1.paymentOfChange(2);
         taxi1.boardingPassengers(5);
         taxi1.boardingPassengers(3, "구로디지털단지역", 12);
+        taxi1.paymentOfChange(12);
         taxi1.changeAmountOfFuel(-20);
     }
 }
